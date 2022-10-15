@@ -1,0 +1,209 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="VivaBillingNewWeb.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <link rel="stylesheet" href="CSS/bootstrap.min.css" />
+    <script src="JS/jquery.min.js"></script>
+    <script src="JS/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+        /* The side navigation menu */
+        .sidenav {
+            height: 100%; /* 100% Full-height */
+            width: 0; /* 0 width - change this with JavaScript */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Stay on top */
+            top: 0;
+            left: 0;
+            background-color: #111; /* Black*/
+            overflow-x: hidden; /* Disable horizontal scroll */
+            padding-top: 60px; /* Place content 60px from the top */
+            transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+        }
+
+            /* The navigation menu links */
+            .sidenav a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                /*color: #818181;*/
+                color: yellow;
+                display: block;
+                transition: 0.3s;
+            }
+
+                /* When you mouse over the navigation links, change their color */
+                .sidenav a:hover {
+                    color: #f1f1f1;
+                }
+
+            /* Position and style the close button (top right corner) */
+            .sidenav .closebtn {
+                position: absolute;
+                top: 0;
+                right: 25px;
+                font-size: 36px;
+                margin-left: 50px;
+            }
+
+        /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+        #main {
+            transition: margin-left .5s;
+            //padding: 20px;
+        }
+
+        /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+                .sidenav a {
+                    font-size: 18px;
+                }
+        }
+
+        .menu-icon {
+            width: 18px;
+            height: 3px;
+            background-color: darkorange;
+            margin: 3px 0;
+        }
+
+        .menu-header {
+            color: deepskyblue;
+        }
+
+        .collapse {
+            padding-left: 15px;
+        }
+
+            .collapse a {
+                color: yellow;
+            }
+
+        * {
+            font-weight: bold;
+    </style>
+</head>
+
+<body>
+    <form runat="server" id="form1">
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
+
+        <%--<asp:Timer ID="Timer1" runat="server" Interval="1000" OnTick="Timer1_Tick"></asp:Timer>--%>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <%--<img src="03.jpg" style="width: 100%" />--%>
+            <img src="Logo.png" style="width: 100%" />
+            <div id="accordion">
+
+                <a class="collapsed" data-toggle="collapse" href="#collapseOne"><span class=" menu-header">File</span> </a>
+                <div id="collapseOne" class="collapse" data-parent="#accordion">
+
+
+
+                    <a href="Main">Main Page</a>
+                    <a href="Today">Today</a>
+                </div>
+
+                <a class="collapsed menu-header" data-toggle="collapse" href="#collapseTwo"><span class=" menu-header">Customers</span></a>
+                <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                    <a href="CustomerRegistration">Registration</a>
+                    <a href="showcustomers">Edit customers</a>
+                </div>
+
+                <a class="collapsed menu-header" data-toggle="collapse" href="#collapseThree"><span class=" menu-header">Product</span></a>
+                <div id="collapseThree" class="collapse" data-parent="#accordion">
+                    <a href="Addproducts">Add product</a>
+                    <a href="AddProductType">Add type</a>
+                    <a href="AddPrices">Add price</a>
+                    <a href="AddSize">Add size</a>
+                </div>
+
+                <a class="collapsed menu-header" data-toggle="collapse" href="#collapseFour"><span class=" menu-header">Invoices</span></a>
+                <div id="collapseFour" class="collapse" data-parent="#accordion">
+                    <a href="FindInvoices">Find</a>
+                </div>
+
+                <a class="collapsed menu-header" data-toggle="collapse" href="#collapseFive"><span class=" menu-header">Payments</span></a>
+                <div id="collapseFive" class="collapse" data-parent="#accordion">
+                    <a href="AddPaymentMethod">Add method</a>
+                </div>
+
+                <a class="collapsed menu-header" data-toggle="" href="sendemail"><span class=" menu-header">Send Email</span></a>
+                <a class="collapsed menu-header" data-toggle="" href="sendsms"><span class=" menu-header">Send SMS</span></a>
+                <a class="collapsed menu-header" data-toggle="" href="Logout.aspx"><span class=" menu-header">Logout</span></a>
+                <%--<div id="collapseSix" class="collapse" data-parent="#accordion">
+                 <a class="collapsed menu-header" data-toggle="collapse" ><span class=" menu-header">Logout</span></a>
+            </div>--%>
+            </div>
+        </div>
+
+        <!-- Use any element to open the sidenav -->
+
+        <div style="margin-top: -2px; padding: 2px;">
+            <div style="">
+                <div style="margin-left: 5px; margin-top: 5px; display: inline-block;" onmouseover="openNav()">
+                    <div class="menu-icon"></div>
+                    <div class="menu-icon"></div>
+                    <div class="menu-icon"></div>
+                </div>
+                <div style="display: inline-block;">
+                    <button type="button" class="btn btn-primary btn-sm" style="margin-top: -12px;">
+                        <%--Your IP:--%> <span class="badge badge-light" runat="server" id="lblIpAddress"></span>
+                    </button>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+        <div id="main">
+
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+        <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+            }
+
+            /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+            function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+function startTime() {
+d = new Date();
+utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+    nd = new Date(utc + (3600000 * +5.5));
+    var ist = nd.toLocaleString();
+    document.getElementById('lblIpAddress').innerHTML = ist;//hoursIST + ":" + minutesIST + ":" + secondsIST;
+  t = setTimeout(function() {
+    startTime()
+  }, 500);
+}
+startTime();
+        </script>
+
+
+    </form>
+</body>
+</html>
